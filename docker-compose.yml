@@ -1,0 +1,9 @@
+version: '2'
+services:
+  node:
+    build: .
+    ports:
+      - "5005:5005"
+      - "9005:9005" # for firebase authentication
+    volumes:
+      - ./src:/var/src
