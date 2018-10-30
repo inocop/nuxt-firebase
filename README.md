@@ -63,8 +63,8 @@ https://console.firebase.google.com
 [host]$ git clone https://github.com/inocop/nuxt-firebase.git
 [host]$ docker-compose up -d
 [host]$ docker exec -it nuxt-firebase_node_1 sh
-[docker]$ cd /var/src/nuxt_app  && npm install
-[docker]$ cd /var/src/functions && npm install
+[docker]$ npm install --prefix /var/src/nuxt_app
+[docker]$ npm install --prefix /var/src/functions
 [docker]$ firebase login
 [docker]$ firebase use --add
 ? Which project do you want to add? {{ your project_id }}
@@ -74,8 +74,7 @@ https://console.firebase.google.com
 ### Develop
 
 ```shell
-[docker]$ cd /var/src/nuxt_app
-[docker]$ npm run dev
+[docker]$ npm run dev --prefix /var/src/nuxt_app
 ```
 
 http://localhost:5005
@@ -83,7 +82,6 @@ http://localhost:5005
 ### Deploy
 
 ```shell
-[docker]$ cd /var/src/nuxt_app
-[docker]$ npm run build
+[docker]$ npm run build --prefix /var/src/nuxt_app
 [docker]$ firebase deploy
 ```
