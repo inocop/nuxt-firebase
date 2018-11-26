@@ -2,6 +2,7 @@ version: '2'
 services:
   node:
     build: .
+    container_name: "nuxt-firebase_node_1"
     ports:
       - "5005:5005"
       - "9005:9005" # for firebase authentication

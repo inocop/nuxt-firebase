@@ -26,7 +26,7 @@ https://console.firebase.google.com
 
 
 ```shell
-[docker]$ firebase login
+[docker]$ firebase login:ci
 [docker]$ firebase init
 ? Which Firebase CLI features do you want to setup for this folder? Press Space to select features, then Enter to confirm your choices.
  ◯ Database: Deploy Firebase Realtime Database Rules
@@ -65,7 +65,7 @@ https://console.firebase.google.com
 [host]$ docker exec -it nuxt-firebase_node_1 sh
 [docker]$ npm install --prefix /var/src/nuxt_app
 [docker]$ npm install --prefix /var/src/functions
-[docker]$ firebase login
+[docker]$ firebase login:ci
 [docker]$ firebase use --add
 ? Which project do you want to add? {{ your project_id }}
 ? What alias do you want to use for this project? (e.g. staging) default
@@ -74,7 +74,13 @@ https://console.firebase.google.com
 ### Develop
 
 ```shell
-[docker]$ npm run dev --prefix /var/src/nuxt_app
+[docker]$ cd /var/src
+
+# run nuxt app
+[docker]$ npm run dev --prefix nuxt_app
+
+# run cloud function at localhost
+[docker]$ firebase serve -p 5005 -o 0.0.0.0 --only functions
 ```
 
 http://localhost:5005
@@ -82,6 +88,7 @@ http://localhost:5005
 ### Deploy
 
 ```shell
-[docker]$ npm run build --prefix /var/src/nuxt_app
+[docker]$ cd /var/src
+[docker]$ npm run build --prefix nuxt_app
 [docker]$ firebase deploy
 ```
